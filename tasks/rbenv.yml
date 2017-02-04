@@ -1,0 +1,44 @@
+---
+
+- name: check out rbenv
+  git:
+    repo: "{{rbenv_repo_url}}"
+    dest: "{{rbenv_install_path}}"
+    version: "{{rbenv_version}}"
+
+- name: check out plugins
+  git:
+    repo: "{{item.repo_url}}"
+    dest: "{{rbenv_install_path}}/plugins/{{item.name}}"
+    version: "{{item.version}}"
+  with_items: "{{rbenv_plugins}}"
+
+- name: configure sudoers
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers.d/rbenv
+    owner: root
+    group: root
+    mode: 0440
+    backup: yes
+
+- name: configure profile
+  template:
+    src: profile.j2
+    dest: /etc/profile.d/rbenv.sh
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: initialize rbenv
+  shell: source /etc/profile.d/rbenv.sh
+
+- name: gemrc - /etc/gemrc
+  template:
+    src: gemrc.j2
+    dest: /etc/gemrc
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes

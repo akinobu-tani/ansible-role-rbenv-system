@@ -1,0 +1,22 @@
+---
+
+- name: install git
+  yum: name=git
+  become: yes
+
+- include: rbenv.yml
+  become: yes
+
+# - name: install dependencies
+#   yum: name={{item}}
+#   with_items:
+#     - "{{ ruby.dependencies }}"
+#   when: ruby.versions|length > 0
+
+# - name: configure rubies
+#   include: ruby.yml
+#   vars:
+#     version: "{{item.name | default(item)}}"
+#     state: "{{item.state | default('present')}}"
+#     default: "{{item.default | default(false)}}"
+#   with_items: "{{ruby.versions}}"

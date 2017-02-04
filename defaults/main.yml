@@ -1,0 +1,8 @@
+---
+
+rbenv_install_path: /usr/local/rbenv
+rbenv_version: HEAD
+rbenv_plugins:
+  - name: ruby-build
+    repo_url: https://github.com/rbenv/ruby-build.git
+    version: HEAD

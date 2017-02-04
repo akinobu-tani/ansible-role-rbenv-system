@@ -1,0 +1,13 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+
+platforms:
+  - name: centos-7.3
+
+suites:
+  - name: default
