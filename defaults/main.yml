@@ -6,3 +6,7 @@ rbenv_plugins:
   - name: ruby-build
     repo_url: https://github.com/rbenv/ruby-build.git
     version: HEAD
+
+ruby_versions: []
+ruby_gems:
+  - bundler

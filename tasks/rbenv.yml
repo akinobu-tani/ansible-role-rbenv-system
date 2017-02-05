@@ -30,11 +30,13 @@
     group: root
     mode: 0644
     backup: yes
+  register: result
 
 - name: initialize rbenv
   shell: source /etc/profile.d/rbenv.sh
+  when: result.changed
 
-- name: gemrc - /etc/gemrc
+- name: configure gemrc
   template:
     src: gemrc.j2
     dest: /etc/gemrc

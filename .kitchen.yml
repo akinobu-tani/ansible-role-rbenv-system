@@ -5,6 +5,8 @@ driver:
 provisioner:
   name: ansible_playbook
   hosts: localhost
+  ansible_verbose: true
+  ansible_verbosity: 3
 
 platforms:
   - name: centos-7.3

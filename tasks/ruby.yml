@@ -1,0 +1,34 @@
+---
+
+- name: install ruby
+  shell: >
+    source /etc/profile &&
+    if ! rbenv versions | awk '{print $1$2}' | grep -E '^\*?{{version}}$'; then
+      rbenv install {{version}} && echo -e \\nchanged
+    fi
+  args:
+    executable: /bin/bash
+  register: result
+  changed_when: "'changed' in result.stdout_lines"
+
+- name: change ruby version
+  shell: "source /etc/profile && rbenv local {{version}}"
+  args:
+    executable: /bin/bash
+  changed_when: false
+  when: ruby_gems|length > 0
+
+- name: install gems
+  gem:
+    name: "{{item.name|default(item)}}"
+    version: "{{item.version|default('')}}"
+    state: "{{item.state | default('present')}}"
+    user_install: no
+    executable: "{{rbenv_install_path}}/shims/gem"
+  with_items: "{{ruby_gems}}"
+
+- name: reset ruby version
+  shell: "source /etc/profile && rbenv local --unset"
+  args:
+    executable: /bin/bash
+  changed_when: false

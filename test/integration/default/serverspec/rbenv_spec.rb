@@ -10,14 +10,11 @@ describe command('$SHELL -lc "rbenv commands"') do
   its(:stdout) { should contain 'install' }
 end
 
-describe file('/etc/sudoers.d/rbenv') do
-  it { should exist }
+describe command('$SHELL -lc "ruby --version"') do
+  its(:stdout) { should contain 'ruby 2.4.0' }
 end
 
-describe file('/etc/profile.d/rbenv.sh') do
-  it { should exist }
+describe command('$SHELL -lc "gem list"') do
+  its(:stdout) { should contain 'bundler' }
 end
 
-describe file('/etc/gemrc') do
-  it { should exist }
-end
