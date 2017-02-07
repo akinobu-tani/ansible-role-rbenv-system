@@ -1,5 +1,8 @@
 ---
 
+- name: install git
+  yum: name=git
+
 - name: check out rbenv
   git:
     repo: "{{rbenv_repo_url}}"

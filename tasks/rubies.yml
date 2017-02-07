@@ -1,0 +1,25 @@
+---
+
+- name: install dependencies
+  yum: name={{item}}
+  with_items:
+    - "{{ ruby_dependencies }}"
+  when: ruby_versions|length > 0
+
+- name: configure rubies
+  include: ruby.yml
+  with_items: "{{ruby_versions}}"
+  loop_control:
+    loop_var: version
+
+- name: set to global version
+  shell: >
+    source /etc/profile &&
+    if ! rbenv version | grep -Eq '^{{ruby_global_version}} '; then
+      rbenv global {{ruby_global_version}} && echo -e \\nchanged
+    fi
+  args:
+    executable: /bin/bash
+  register: result
+  changed_when: "'changed' in result.stdout_lines"
+  when: ruby_global_version is defined
