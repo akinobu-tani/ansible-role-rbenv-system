@@ -6,10 +6,13 @@ provisioner:
   name: ansible_playbook
   hosts: localhost
   ansible_verbose: true
-  ansible_verbosity: 3
+  ansible_verbosity: 4
 
 platforms:
   - name: centos-7.3
+    driver_config:
+      privileged: true
+      run_command: /sbin/init
 
 suites:
   - name: default
