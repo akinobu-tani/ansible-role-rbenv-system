@@ -13,7 +13,7 @@
   git:
     repo: "{{item.repo_url}}"
     dest: "{{rbenv_install_path}}/plugins/{{item.name}}"
-    version: "{{item.version | default(HEAD)}}"
+    version: "{{item.version | default('HEAD')}}"
   with_items: "{{rbenv_plugins}}"
 
 - name: configure sudoers
