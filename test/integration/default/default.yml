@@ -2,7 +2,7 @@
 
 - hosts: localhost
   roles:
-    - ansible-role-rbenv
+    - ansible-role-rbenv-system
   vars:
     ruby_versions:
       - 2.4.0
