@@ -1,7 +1,7 @@
-Ansible Role rbenv
+Ansible Role rbenv system-wide
 =========
 
-[![Build Status](https://travis-ci.org/akinobu-tani/ansible-role-rbenv.svg?branch=master)](https://travis-ci.org/akinobu-tani/ansible-role-rbenv)
+[![Build Status](https://travis-ci.org/akinobu-tani/ansible-role-rbenv-system.svg?branch=master)](https://travis-ci.org/akinobu-tani/ansible-role-rbenv-system)
 
 Installs rbenv.
 
